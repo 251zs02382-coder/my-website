@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サブページ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>イベント概要</title>
   <style>
-    body {
-      font-family: "Arial", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
-      color: #333;
-      text-align: center;
+    :root { --brand:#4a90e2; }
+    body{
+      margin:0; font-family:system-ui, -apple-system, "Segoe UI", Arial;
+      background: linear-gradient(120deg,#fbc2eb,#a6c1ee);
+      color:#333;
     }
-    header {
-      background: #e94e77;
-      color: white;
-      padding: 30px 20px;
+    header{ padding:26px 16px; text-align:center; background:#e94e77; color:#fff; }
+    header h1{ margin:0; }
+    main{ max-width:900px; margin:28px auto; padding:0 16px; }
+    .card{
+      background:#fff; border-radius:14px; padding:22px; margin:16px 0;
+      box-shadow:0 8px 18px rgba(0,0,0,.12);
     }
-    section {
-      margin: 40px auto;
-      width: 80%;
-      max-width: 700px;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    h2{ margin:.2em 0 .6em; }
+    .btns{ display:flex; flex-wrap:wrap; gap:10px; }
+    a.btn{
+      display:inline-block; padding:10px 16px; border-radius:10px;
+      color:#fff; text-decoration:none; font-weight:600;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #e94e77;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-    a:hover {
-      background: #c03f63;
-    }
+    .back{ background:#444; }
+    .yt{ background:#ff0033; }
+    .dc{ background:#5865F2; }
+    table{ width:100%; border-collapse:collapse; }
+    th, td{ padding:10px; border-bottom:1px solid #eee; text-align:left; }
+    th{ width:140px; color:#555; }
+    .note{ color:#666; font-size:.95rem; }
   </style>
 </head>
 <body>
   <header>
-    <h1>サブページ</h1>
+    <h1>イベント概要</h1>
+    <p>参加前に必ずお読みください</p>
   </header>
 
-  <section>
-    <p>ここはサブページです。<br>
-    自由にテキストや画像を入れてカスタマイズできます。</p>
+  <main>
+    <section class="card">
+      <h2>基本情報</h2>
+      <table>
+        <tr><th>イベント名</th><td>Valorant 5v5 スクリム</td></tr>
+        <tr><th>日時</th><td>毎週土曜日 21:00〜</td></tr>
+        <tr><th>内容</th><td>Valorant の 5v5 カスタムマッチを行う賞金なしスクリム</td></tr>
+        <tr><th>場所</th><td>Discord サーバー内で集合・マッチ進行</td></tr>
+      </table>
+      <p class="note">※ 賞金や景品はありません。練習目的のスクリムになります。</p>
+      <div class="btns" style="margin-top:10px">
+        <a class="btn dc" href="YOUR_DISCORD_INVITE" target="_blank" rel="noopener">Discord に参加</a>
+        <a class="btn back" href="index.html">トップへ戻る</a>
+      </div>
+    </section>
 
-    <!-- トップページへ戻るリンク -->
-    <a href="index.html">トップページに戻る</a>
-  </section>
+    <section class="card">
+      <h2>参加ルール</h2>
+      <ul>
+        <li>VCでの暴言・煽り行為は禁止です。</li>
+        <li>チーム分けは主催者の指示に従ってください。</li>
+        <li>初心者から上級者まで楽しく参加できるようにしましょう。</li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
