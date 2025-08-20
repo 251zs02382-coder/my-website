@@ -3,72 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clock & Links</title>
+  <title>ホーム｜VALORANT スクリム</title>
   <style>
-    :root { --brand:#4a90e2; }
-    * { box-sizing: border-box; }
-    body{
-      margin:0; font-family:system-ui, -apple-system, "Segoe UI", Arial;
-      background: linear-gradient(120deg,#74ebd5,#9face6);
-      color:#333; text-align:center;
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      background: linear-gradient(135deg,#89f7fe,#66a6ff);
+      color: #222;
+      margin: 0; padding: 0;
+      text-align: center;
     }
-    header{ padding:28px 16px; background:var(--brand); color:#fff; }
-    header h1{ margin:0; font-size:1.9rem; }
-    main{ max-width:860px; margin:32px auto; padding:0 16px; }
-    .card{
-      background:#fff; border-radius:14px; padding:24px; margin:18px 0;
-      box-shadow:0 8px 18px rgba(0,0,0,.12);
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px;
     }
-    #time{ font-size:2rem; font-weight:700; color:var(--brand); letter-spacing:.03em; }
-    .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:18px; }
-    a.btn{
-      display:inline-block; padding:12px 18px; border-radius:10px;
-      color:#fff; text-decoration:none; font-weight:600; transition:.15s;
+    h1 { margin: 0; }
+    main { padding: 20px; }
+    .clock, .countdown {
+      font-size: 1.3rem;
+      margin: 20px 0;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      display: inline-block;
     }
-    .yt { background:#ff0033; }
-    .dc { background:#5865F2; }
-    .sub{ background:#2bb673; }
-    a.btn:hover{ filter:brightness(.92); transform:translateY(-1px); }
-    footer{ color:#eee; background:#222; padding:16px; margin-top:28px; font-size:.92rem; }
+    .links {
+      margin-top: 20px;
+    }
+    .links a {
+      display:inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background: #5865F2;
+      color:#fff;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:600;
+    }
+    .links a:hover { opacity: 0.8; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Community Hub</h1>
-    <p>イベント概要とリンク集</p>
+    <h1>VALORANT 5v5 スクリム</h1>
+    <p>毎週土曜 14:00 開催（賞金なし練習カスタム）</p>
   </header>
 
   <main>
-    <section class="card">
-      <h2>現在の時間</h2>
-      <p id="time">読み込み中...</p>
-    </section>
+    <div class="clock">
+      現在時刻：<span id="time">--:--:--</span>
+    </div>
 
-    <section class="card">
-      <h2>リンク</h2>
-      <div class="btns">
-        <a class="btn yt" href="https://www.youtube.com/@fj-go7bb" target="_blank" rel="noopener">YouTube を開く</a>
-        <a class="btn dc" href="https://discord.gg/jDRkV3kXN8" target="_blank" rel="noopener">Discord サーバーへ</a>
-        <a class="btn sub" href="subpage.html">イベント概要を見る</a>
-      </div>
-    </section>
+    <div class="countdown">
+      次回カスタム開始まで：<br>
+      <span id="cd">計算中...</span>
+    </div>
+
+    <div class="links">
+      <a href="subpage.html">イベント概要ページへ</a>
+      <a href="https://discord.gg/XXXX" target="_blank">Discord サーバー</a>
+      <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+    </div>
   </main>
 
-  <footer>&copy; 2025 Community Hub</footer>
-
   <script>
-    function updateTime(){
+    // ==== 現在時刻 ====
+    function updateClock() {
       const now = new Date();
-      const s = now.toLocaleString("ja-JP", {
-        year:"numeric", month:"2-digit", day:"2-digit",
-        hour:"2-digit", minute:"2-digit", second:"2-digit"
-      });
-      document.getElementById("time").textContent = s;
+      const hh = String(now.getHours()).padStart(2,"0");
+      const mm = String(now.getMinutes()).padStart(2,"0");
+      const ss = String(now.getSeconds()).padStart(2,"0");
+      document.getElementById("time").textContent = `${hh}:${mm}:${ss}`;
     }
-    updateTime();
-    setInterval(updateTime, 1000);
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ==== カウントダウン ====
+    function updateCountdown() {
+      const now = new Date();
+      const next = new Date();
+
+      // 次の土曜14:00を計算
+      next.setDate(now.getDate() + ((6 - now.getDay() + 7) % 7)); // 土曜 = 6
+      next.setHours(14, 0, 0, 0);
+      if (next <= now) {
+        next.setDate(next.getDate() + 7);
+      }
+
+      const diff = next - now;
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("cd").textContent = 
+        `${d}日 ${h}時間 ${m}分 ${s}秒`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
+
+
 
 
