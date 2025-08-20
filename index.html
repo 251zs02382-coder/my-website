@@ -19,7 +19,7 @@
     }
     h1 { margin: 0; }
     main { padding: 20px; }
-    .clock, .countdown {
+    .countdown {
       font-size: 1.3rem;
       margin: 20px 0;
       background: #fff;
@@ -51,32 +51,17 @@
   </header>
 
   <main>
-    <div class="clock">
-      現在時刻：<span id="time">--:--:--</span>
-    </div>
-
     <div class="countdown">
       次回カスタム開始まで：<br>
       <span id="cd">計算中...</span>
     </div>
 
     <div class="links">
-      <a href="subpage.html">イベント概要ページへ</a>
+      <a href="subpage.html">日程表を見る</a>
     </div>
   </main>
 
   <script>
-    // ==== 現在時刻 ====
-    function updateClock() {
-      const now = new Date();
-      const hh = String(now.getHours()).padStart(2,"0");
-      const mm = String(now.getMinutes()).padStart(2,"0");
-      const ss = String(now.getSeconds()).padStart(2,"0");
-      document.getElementById("time").textContent = `${hh}:${mm}:${ss}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
     // ==== カウントダウン ====
     function updateCountdown() {
       const now = new Date();
@@ -103,9 +88,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
